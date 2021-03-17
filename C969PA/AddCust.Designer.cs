@@ -36,17 +36,17 @@ namespace C969PA
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.AddCustNameBox = new System.Windows.Forms.TextBox();
+            this.AddCustPhoneBox = new System.Windows.Forms.TextBox();
+            this.AddCustStreetBox = new System.Windows.Forms.TextBox();
+            this.AddCustCityBox = new System.Windows.Forms.TextBox();
+            this.AddCustZipBox = new System.Windows.Forms.TextBox();
+            this.AddCustCountryBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ActiveYesRadio = new System.Windows.Forms.RadioButton();
+            this.ActiveNoRadio = new System.Windows.Forms.RadioButton();
+            this.AddCustSave = new System.Windows.Forms.Button();
+            this.AddCustCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -113,47 +113,47 @@ namespace C969PA
             this.label7.TabIndex = 6;
             this.label7.Text = "Country:";
             // 
-            // textBox1
+            // AddCustNameBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(130, 104);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(174, 23);
-            this.textBox1.TabIndex = 7;
+            this.AddCustNameBox.Location = new System.Drawing.Point(130, 104);
+            this.AddCustNameBox.Name = "AddCustNameBox";
+            this.AddCustNameBox.Size = new System.Drawing.Size(174, 23);
+            this.AddCustNameBox.TabIndex = 7;
             // 
-            // textBox2
+            // AddCustPhoneBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(130, 149);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(174, 23);
-            this.textBox2.TabIndex = 8;
+            this.AddCustPhoneBox.Location = new System.Drawing.Point(130, 149);
+            this.AddCustPhoneBox.Name = "AddCustPhoneBox";
+            this.AddCustPhoneBox.Size = new System.Drawing.Size(174, 23);
+            this.AddCustPhoneBox.TabIndex = 8;
             // 
-            // textBox3
+            // AddCustStreetBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(130, 195);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(174, 23);
-            this.textBox3.TabIndex = 9;
+            this.AddCustStreetBox.Location = new System.Drawing.Point(130, 195);
+            this.AddCustStreetBox.Name = "AddCustStreetBox";
+            this.AddCustStreetBox.Size = new System.Drawing.Size(174, 23);
+            this.AddCustStreetBox.TabIndex = 9;
             // 
-            // textBox4
+            // AddCustCityBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(130, 242);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(174, 23);
-            this.textBox4.TabIndex = 10;
+            this.AddCustCityBox.Location = new System.Drawing.Point(130, 242);
+            this.AddCustCityBox.Name = "AddCustCityBox";
+            this.AddCustCityBox.Size = new System.Drawing.Size(174, 23);
+            this.AddCustCityBox.TabIndex = 10;
             // 
-            // textBox5
+            // AddCustZipBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(130, 286);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(174, 23);
-            this.textBox5.TabIndex = 11;
+            this.AddCustZipBox.Location = new System.Drawing.Point(130, 286);
+            this.AddCustZipBox.Name = "AddCustZipBox";
+            this.AddCustZipBox.Size = new System.Drawing.Size(174, 23);
+            this.AddCustZipBox.TabIndex = 11;
             // 
-            // textBox6
+            // AddCustCountryBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(130, 329);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(174, 23);
-            this.textBox6.TabIndex = 12;
+            this.AddCustCountryBox.Location = new System.Drawing.Point(130, 329);
+            this.AddCustCountryBox.Name = "AddCustCountryBox";
+            this.AddCustCountryBox.Size = new System.Drawing.Size(174, 23);
+            this.AddCustCountryBox.TabIndex = 12;
             // 
             // label8
             // 
@@ -165,62 +165,62 @@ namespace C969PA
             this.label8.Text = "Active:";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
-            // radioButton1
+            // ActiveYesRadio
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(164, 372);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(42, 19);
-            this.radioButton1.TabIndex = 14;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Yes";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.ActiveYesRadio.AutoSize = true;
+            this.ActiveYesRadio.Location = new System.Drawing.Point(164, 372);
+            this.ActiveYesRadio.Name = "ActiveYesRadio";
+            this.ActiveYesRadio.Size = new System.Drawing.Size(42, 19);
+            this.ActiveYesRadio.TabIndex = 14;
+            this.ActiveYesRadio.TabStop = true;
+            this.ActiveYesRadio.Text = "Yes";
+            this.ActiveYesRadio.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // ActiveNoRadio
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(226, 372);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(41, 19);
-            this.radioButton2.TabIndex = 15;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "No";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.ActiveNoRadio.AutoSize = true;
+            this.ActiveNoRadio.Location = new System.Drawing.Point(226, 372);
+            this.ActiveNoRadio.Name = "ActiveNoRadio";
+            this.ActiveNoRadio.Size = new System.Drawing.Size(41, 19);
+            this.ActiveNoRadio.TabIndex = 15;
+            this.ActiveNoRadio.TabStop = true;
+            this.ActiveNoRadio.Text = "No";
+            this.ActiveNoRadio.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // AddCustSave
             // 
-            this.button1.Location = new System.Drawing.Point(130, 416);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.AddCustSave.Location = new System.Drawing.Point(130, 416);
+            this.AddCustSave.Name = "AddCustSave";
+            this.AddCustSave.Size = new System.Drawing.Size(75, 23);
+            this.AddCustSave.TabIndex = 16;
+            this.AddCustSave.Text = "Save";
+            this.AddCustSave.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // AddCustCancel
             // 
-            this.button2.Location = new System.Drawing.Point(229, 416);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            this.AddCustCancel.Location = new System.Drawing.Point(229, 416);
+            this.AddCustCancel.Name = "AddCustCancel";
+            this.AddCustCancel.Size = new System.Drawing.Size(75, 23);
+            this.AddCustCancel.TabIndex = 17;
+            this.AddCustCancel.Text = "Cancel";
+            this.AddCustCancel.UseVisualStyleBackColor = true;
             // 
             // AddCustPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 467);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.AddCustCancel);
+            this.Controls.Add(this.AddCustSave);
+            this.Controls.Add(this.ActiveNoRadio);
+            this.Controls.Add(this.ActiveYesRadio);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.AddCustCountryBox);
+            this.Controls.Add(this.AddCustZipBox);
+            this.Controls.Add(this.AddCustCityBox);
+            this.Controls.Add(this.AddCustStreetBox);
+            this.Controls.Add(this.AddCustPhoneBox);
+            this.Controls.Add(this.AddCustNameBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -245,16 +245,16 @@ namespace C969PA
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox AddCustNameBox;
+        private System.Windows.Forms.TextBox AddCustPhoneBox;
+        private System.Windows.Forms.TextBox AddCustStreetBox;
+        private System.Windows.Forms.TextBox AddCustCityBox;
+        private System.Windows.Forms.TextBox AddCustZipBox;
+        private System.Windows.Forms.TextBox AddCustCountryBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RadioButton ActiveYesRadio;
+        private System.Windows.Forms.RadioButton ActiveNoRadio;
+        private System.Windows.Forms.Button AddCustSave;
+        private System.Windows.Forms.Button AddCustCancel;
     }
 }

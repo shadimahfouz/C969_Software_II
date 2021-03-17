@@ -128,6 +128,7 @@ namespace C969PA
             this.CancelAddApp.TabIndex = 10;
             this.CancelAddApp.Text = "Cancel";
             this.CancelAddApp.UseVisualStyleBackColor = true;
+            this.CancelAddApp.Click += new System.EventHandler(this.CancelAddApp_Click);
             // 
             // AddApp
             // 
@@ -137,6 +138,7 @@ namespace C969PA
             this.AddApp.TabIndex = 11;
             this.AddApp.Text = "Add";
             this.AddApp.UseVisualStyleBackColor = true;
+            this.AddApp.Click += new System.EventHandler(this.AddApp_Click_1);
             // 
             // AddAppPage
             // 

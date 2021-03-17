@@ -8,16 +8,11 @@ using System.Windows.Forms;
 
 namespace C969PA
 {
-    public partial class DelAppPage : Form
+    public partial class ConsultantReportPage : Form
     {
-        public DelAppPage()
+        public ConsultantReportPage()
         {
             InitializeComponent();
-        }
-
-        private void DelAppIDBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

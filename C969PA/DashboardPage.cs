@@ -8,14 +8,14 @@ using System.Windows.Forms;
 
 namespace C969PA
 {
-    public partial class DelAppPage : Form
+    public partial class DashboardPage : Form
     {
-        public DelAppPage()
+        public DashboardPage()
         {
             InitializeComponent();
         }
 
-        private void DelAppIDBox_TextChanged(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

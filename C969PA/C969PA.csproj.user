@@ -7,6 +7,15 @@
     <Compile Update="AddCust.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ConsultantReportPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CustReportPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DashboardPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="DelApp.cs">
       <SubType>Form</SubType>
     </Compile>

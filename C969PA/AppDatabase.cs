@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Text;
 using MySql.Data.MySqlClient;
 
@@ -7,5 +9,204 @@ namespace C969PA
 {
     class AppDatabase
     {
+        private static Dictionary<int, Hashtable> _appointmentDict = new Dictionary<int, Hashtable>();
+        private static int _userId;
+        private static string _userName;
+        public static string dbConnection = "server=wgudb.ucertify.com;database=u07eI;uid=U07ueI;pwd=53689136346";
+
+        public static int GetUserId()
+        {
+            return _userId
+        }
+
+        public static void SetUserId(int userId)
+        {
+            _userId = userId;
+        }
+
+        public static string GetUserName()
+        {
+            return _userName;
+        }
+
+        public static void SetUserName(string userName)
+        {
+            _userName = userName;
+        }
+
+        public static Dictionary<int, Hashtable> GetAppointments()
+        {
+            return _appointmentDict;
+        }
+
+        public static void SetAppointments(Dictionary<int, Hashtable> appointments)
+        {
+            _appointmentDict = appointments;
+        }
+
+        public static int NewUserId(List<int> idList)
+        {
+            int firstId = 0;
+
+            foreach (int id in idList)
+            {
+                if (id > firstId)
+                {
+                    firstId = id;
+                }
+            }
+            return firstId + 1;
+        }
+
+        public static string LogTimeStamp()
+        {
+            return DateTime.Now.ToString("u");
+        }
+
+        public static int MakeId(string idtable)
+        {
+            MySqlConnection s = new MySqlConnection(dbConnection);
+            s.Open();
+            MySqlCommand command = new MySqlCommand($"SELECT {idtable + "Id"} FROM {idtable}", s);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<int> idList = new List<int>();
+            while (reader.Read())
+            {
+                idList.Add(Convert.ToInt32(reader[0]));
+            }
+            reader.Close();
+            s.Close();
+            return NewUserId(idList);
+        }
+
+        public static int NewLog(string timestamp, string username, string table, string poq, int userid = 0)
+        {
+            int logId = MakeId(table);
+            string logInsert;
+            if (userid == 0)
+            {
+                logInsert = $"INSERT INTO {table}" +
+                            $" VALUES ('{logId}', {poq}, '{timestamp}', '{username}', '{timestamp}', '{username}')";
+            }
+            else
+            {
+                logInsert =
+                    $"INSERT INTO {table} (appId, custId, start, end, type, userId, dateCreated, createdBy, lastUpdated, lastUpdatedBy)" +
+                    $"VALUES ('{logId}', {poq}, '{userid}', '{timestamp}', '{username}', '{timestamp}', '{username}')";
+            }
+
+            MySqlConnection s = new MySqlConnection(dbConnection);
+            s.Open();
+            MySqlCommand command = new MySqlCommand(logInsert, s);
+            command.ExecuteNonQuery();
+            s.Close();
+
+            return logId;
+        }
+
+        public static int LookupCustomer(string enterCust)
+        {
+            int custId;
+            string query;
+            if (int.TryParse(enterCust, out custId))
+            {
+                query = $"SELECT custId FROM customer WHERE custId = '{enterCust.ToString()}'";
+            }
+            else
+            {
+                query = $"SELECT custId FROM customer WHERE custName LIKE '{enterCust}'";
+            }
+
+            MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
+            s.Open();
+            MySqlCommand command = new MySqlCommand(query, s);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                custId = Convert.ToInt32(reader[0]);
+                reader.Close();
+                s.Close();
+                return custId;
+            }
+
+            return 0;
+        }
+
+        public static Dictionary<string, string> GetCustInfo(int custId)
+        {
+            string query = $"SELECT * FROM customer WHERE custId = '{custId.ToString()}'";
+            MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
+            s.Open();
+            MySqlCommand command = new MySqlCommand(query, s);
+            MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            Dictionary<string, string> customerDict = new Dictionary<string, string>();
+            customerDict.Add("custName", reader[1].ToString());
+            customerDict.Add("strAddressId", reader[2].ToString());
+            customerDict.Add("active", reader[3].ToString());
+            reader.Close();
+
+            query = $"SELECT * FROM address WHERE strAddressId = '{customerDict["strAddressId"]}'";
+            command = new MySqlCommand(query, s);
+            reader = command.ExecuteReader();
+            reader.Read();
+
+            customerDict.Add("address", reader[1].ToString());
+            customerDict.Add("cityId", reader[3].ToString());
+            customerDict.Add("zipCode", reader[4].ToString());
+            customerDict.Add("phoneNumber", reader[5].ToString());
+            reader.Close();
+
+            query = $"SELECT * FROM city WHERE cityId = '{customerDict["cityId"]}'";
+            command = new MySqlCommand(query, s);
+            reader = command.ExecuteReader();
+            reader.Read();
+
+            customerDict.Add("city", reader[1].ToString());
+            customerDict.Add("countryId", reader[2].ToString());
+            reader.Close();
+
+            query = $"SELECT * FROM country WHERE countryId = '{customerDict["countryId"]}'";
+            command = new MySqlCommand(query, s);
+            reader = command.ExecuteReader();
+            reader.Read();
+
+            customerDict.Add("country", reader[1].ToString());
+            reader.Close();
+            s.Close();
+
+            return customerDict;
+        }
+
+        public static Dictionary<string, string> GetAppInfo(string appId)
+        {
+            string query = $"SELECT * FROM appointment WHERE appId = '{appId}'";
+            MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
+            s.Open();
+            MySqlCommand command = new MySqlCommand(query, s);
+            MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            Dictionary<string, string> appointmentDict = new Dictionary<string, string>();
+            appointmentDict.Add("appId", appId);
+            appointmentDict.Add("custId", reader[1].ToString());
+            appointmentDict.Add("type", reader[13].ToString());
+            appointmentDict.Add("start", reader[7].ToString());
+            appointmentDict.Add("end", reader[8].ToString());
+            reader.Close();
+
+            return appointmentDict;
+        }
+
+        public static string TimezoneConversion(string localTimezone)
+        {
+            DateTime utcDateTime = DateTime.Parse(localTimezone.ToString());
+            DateTime localDateTime = utcDateTime.ToLocalTime();
+
+            return localDateTime.ToString("MM/dd/yyyy hh:mm tt");
+        }
     }
 }
