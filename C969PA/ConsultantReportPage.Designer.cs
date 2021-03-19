@@ -52,6 +52,7 @@ namespace C969PA
             this.ConScheduleGrid.RowTemplate.Height = 25;
             this.ConScheduleGrid.Size = new System.Drawing.Size(622, 357);
             this.ConScheduleGrid.TabIndex = 1;
+            this.ConScheduleGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConScheduleGrid_CellContentClick);
             // 
             // ConsultantReportPage
             // 

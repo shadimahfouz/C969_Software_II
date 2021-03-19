@@ -195,6 +195,7 @@ namespace C969PA
             this.AddCustSave.TabIndex = 16;
             this.AddCustSave.Text = "Save";
             this.AddCustSave.UseVisualStyleBackColor = true;
+            this.AddCustSave.Click += new System.EventHandler(this.AddCustSave_Click);
             // 
             // AddCustCancel
             // 
@@ -204,6 +205,7 @@ namespace C969PA
             this.AddCustCancel.TabIndex = 17;
             this.AddCustCancel.Text = "Cancel";
             this.AddCustCancel.UseVisualStyleBackColor = true;
+            this.AddCustCancel.Click += new System.EventHandler(this.AddCustCancel_Click);
             // 
             // AddCustPage
             // 

@@ -10,9 +10,18 @@ namespace C969PA
 {
     public partial class DashboardPage : Form
     {
+
+        public LoginPage loginPage;
         public DashboardPage()
         {
             InitializeComponent();
+            DashboardAppGrid.DataSource = DashAppCalendar(DashboardWeekRadio.Checked);
+            AppReminder(DashboardAppGrid);
+        }
+
+        public static void AppReminder(DataGridView dashCalendar)
+        {
+
         }
 
         private void label2_Click(object sender, EventArgs e)
