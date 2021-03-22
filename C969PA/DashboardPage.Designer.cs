@@ -106,6 +106,7 @@ namespace C969PA
             this.DashboardCustReportButton.TabIndex = 5;
             this.DashboardCustReportButton.Text = "Customers";
             this.DashboardCustReportButton.UseVisualStyleBackColor = true;
+            this.DashboardCustReportButton.Click += new System.EventHandler(this.DashboardCustReportButton_Click);
             // 
             // DashboardConReportButton
             // 
@@ -115,6 +116,7 @@ namespace C969PA
             this.DashboardConReportButton.TabIndex = 6;
             this.DashboardConReportButton.Text = "Consultants";
             this.DashboardConReportButton.UseVisualStyleBackColor = true;
+            this.DashboardConReportButton.Click += new System.EventHandler(this.DashboardConReportButton_Click);
             // 
             // DashboardAppReportButton
             // 
@@ -124,6 +126,7 @@ namespace C969PA
             this.DashboardAppReportButton.TabIndex = 7;
             this.DashboardAppReportButton.Text = "Appointments";
             this.DashboardAppReportButton.UseVisualStyleBackColor = true;
+            this.DashboardAppReportButton.Click += new System.EventHandler(this.DashboardAppReportButton_Click);
             // 
             // DashboardDelCustButton
             // 
@@ -133,6 +136,7 @@ namespace C969PA
             this.DashboardDelCustButton.TabIndex = 8;
             this.DashboardDelCustButton.Text = "Delete Customer";
             this.DashboardDelCustButton.UseVisualStyleBackColor = true;
+            this.DashboardDelCustButton.Click += new System.EventHandler(this.DashboardDelCustButton_Click);
             // 
             // DashboardModCustButton
             // 
@@ -142,6 +146,7 @@ namespace C969PA
             this.DashboardModCustButton.TabIndex = 9;
             this.DashboardModCustButton.Text = "Modify Customer";
             this.DashboardModCustButton.UseVisualStyleBackColor = true;
+            this.DashboardModCustButton.Click += new System.EventHandler(this.DashboardModCustButton_Click);
             // 
             // DashboardAddCustButton
             // 
@@ -151,6 +156,7 @@ namespace C969PA
             this.DashboardAddCustButton.TabIndex = 10;
             this.DashboardAddCustButton.Text = "Add Customer";
             this.DashboardAddCustButton.UseVisualStyleBackColor = true;
+            this.DashboardAddCustButton.Click += new System.EventHandler(this.DashboardAddCustButton_Click);
             // 
             // DashboardAddAppButton
             // 
@@ -160,6 +166,7 @@ namespace C969PA
             this.DashboardAddAppButton.TabIndex = 11;
             this.DashboardAddAppButton.Text = "Add Appointment";
             this.DashboardAddAppButton.UseVisualStyleBackColor = true;
+            this.DashboardAddAppButton.Click += new System.EventHandler(this.DashboardAddAppButton_Click);
             // 
             // DashboardModAppButton
             // 
@@ -169,6 +176,7 @@ namespace C969PA
             this.DashboardModAppButton.TabIndex = 12;
             this.DashboardModAppButton.Text = "Modify Appointment";
             this.DashboardModAppButton.UseVisualStyleBackColor = true;
+            this.DashboardModAppButton.Click += new System.EventHandler(this.DashboardModAppButton_Click);
             // 
             // DashboardDelAppButton
             // 
@@ -178,6 +186,7 @@ namespace C969PA
             this.DashboardDelAppButton.TabIndex = 13;
             this.DashboardDelAppButton.Text = "Delete Appointment";
             this.DashboardDelAppButton.UseVisualStyleBackColor = true;
+            this.DashboardDelAppButton.Click += new System.EventHandler(this.DashboardDelAppButton_Click);
             // 
             // DashboardWeekRadio
             // 
@@ -189,6 +198,7 @@ namespace C969PA
             this.DashboardWeekRadio.TabStop = true;
             this.DashboardWeekRadio.Text = "View By Week";
             this.DashboardWeekRadio.UseVisualStyleBackColor = true;
+            this.DashboardWeekRadio.CheckedChanged += new System.EventHandler(this.DashboardWeekRadio_CheckedChanged);
             // 
             // DashboardMonthRadio
             // 

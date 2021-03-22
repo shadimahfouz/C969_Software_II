@@ -12,11 +12,11 @@ namespace C969PA
         private static Dictionary<int, Hashtable> _appointmentDict = new Dictionary<int, Hashtable>();
         private static int _userId;
         private static string _userName;
-        public static string dbConnection = "server=wgudb.ucertify.com;database=u07eI;uid=U07ueI;pwd=53689136346";
+        public static string dbConnection = "server=wgudb.ucertify.com;database=U07ueI;uid=U07ueI;pwd=53689136346;";
 
         public static int GetUserId()
         {
-            return _userId
+            return _userId;
         }
 
         public static void SetUserId(int userId)
@@ -79,20 +79,20 @@ namespace C969PA
             return NewUserId(idList);
         }
 
-        public static int NewLog(string timestamp, string username, string table, string poq, int userid = 0)
+        public static int NewLog(string timestamp, string userName, string table, string poq, int userId = 0)
         {
             int logId = MakeId(table);
             string logInsert;
-            if (userid == 0)
+            if (userId == 0)
             {
                 logInsert = $"INSERT INTO {table}" +
-                            $" VALUES ('{logId}', {poq}, '{timestamp}', '{username}', '{timestamp}', '{username}')";
+                            $" VALUES ('{logId}', {poq}, '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
             }
             else
             {
                 logInsert =
-                    $"INSERT INTO {table} (appId, custId, start, end, type, userId, dateCreated, createdBy, lastUpdated, lastUpdatedBy)" +
-                    $"VALUES ('{logId}', {poq}, '{userid}', '{timestamp}', '{username}', '{timestamp}', '{username}')";
+                    $"INSERT INTO {table} (appointmentId, customerId, start, end, type, userId, createDate, createdBy, lastUpdate, lastUpdateBy)" +
+                    $" VALUES ('{logId}', {poq}, '{userId}', '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
             }
 
             MySqlConnection s = new MySqlConnection(dbConnection);
@@ -110,11 +110,11 @@ namespace C969PA
             string query;
             if (int.TryParse(enterCust, out custId))
             {
-                query = $"SELECT custId FROM customer WHERE custId = '{enterCust.ToString()}'";
+                query = $"SELECT customerId FROM customer WHERE customerId = '{enterCust.ToString()}'";
             }
             else
             {
-                query = $"SELECT custId FROM customer WHERE custName LIKE '{enterCust}'";
+                query = $"SELECT customerId FROM customer WHERE customerName LIKE '{enterCust}'";
             }
 
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
@@ -136,7 +136,7 @@ namespace C969PA
 
         public static Dictionary<string, string> GetCustInfo(int custId)
         {
-            string query = $"SELECT * FROM customer WHERE custId = '{custId.ToString()}'";
+            string query = $"SELECT * FROM customer WHERE customerId = '{custId.ToString()}'";
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
             s.Open();
             MySqlCommand command = new MySqlCommand(query, s);
@@ -144,20 +144,20 @@ namespace C969PA
             reader.Read();
 
             Dictionary<string, string> customerDict = new Dictionary<string, string>();
-            customerDict.Add("custName", reader[1].ToString());
-            customerDict.Add("strAddressId", reader[2].ToString());
+            customerDict.Add("customerName", reader[1].ToString());
+            customerDict.Add("addressId", reader[2].ToString());
             customerDict.Add("active", reader[3].ToString());
             reader.Close();
 
-            query = $"SELECT * FROM address WHERE strAddressId = '{customerDict["strAddressId"]}'";
+            query = $"SELECT * FROM address WHERE addressId = '{customerDict["addressId"]}'";
             command = new MySqlCommand(query, s);
             reader = command.ExecuteReader();
             reader.Read();
 
             customerDict.Add("address", reader[1].ToString());
             customerDict.Add("cityId", reader[3].ToString());
-            customerDict.Add("zipCode", reader[4].ToString());
-            customerDict.Add("phoneNumber", reader[5].ToString());
+            customerDict.Add("postalCode", reader[4].ToString());
+            customerDict.Add("phone", reader[5].ToString());
             reader.Close();
 
             query = $"SELECT * FROM city WHERE cityId = '{customerDict["cityId"]}'";
@@ -183,7 +183,7 @@ namespace C969PA
 
         public static Dictionary<string, string> GetAppInfo(string appId)
         {
-            string query = $"SELECT * FROM appointment WHERE appId = '{appId}'";
+            string query = $"SELECT * FROM appointment WHERE appointmentId = '{appId}'";
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
             s.Open();
             MySqlCommand command = new MySqlCommand(query, s);
@@ -191,8 +191,8 @@ namespace C969PA
             reader.Read();
 
             Dictionary<string, string> appointmentDict = new Dictionary<string, string>();
-            appointmentDict.Add("appId", appId);
-            appointmentDict.Add("custId", reader[1].ToString());
+            appointmentDict.Add("appointmentId", appId);
+            appointmentDict.Add("customerId", reader[1].ToString());
             appointmentDict.Add("type", reader[13].ToString());
             appointmentDict.Add("start", reader[7].ToString());
             appointmentDict.Add("end", reader[8].ToString());

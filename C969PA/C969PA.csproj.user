@@ -7,6 +7,9 @@
     <Compile Update="AddCust.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="AppReportPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ConsultantReportPage.cs">
       <SubType>Form</SubType>
     </Compile>

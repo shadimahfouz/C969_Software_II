@@ -28,7 +28,7 @@ namespace C969PA
             custDataTable.Columns.Add("Customer Name");
             custDataTable.Columns.Add("Number of Appointments");
 
-            IEnumerable<string> y = numAppointments.Select(i => i.Value["custName"].ToString()).Distinct(); //Lambda
+            IEnumerable<string> y = numAppointments.Select(i => i.Value["customerName"].ToString()).Distinct(); //Lambda
 
             foreach (string x in y)
             {
@@ -36,7 +36,7 @@ namespace C969PA
                 row["Customer Name"] = y;
 
                 row["Number of Appointments"] = numAppointments
-                    .Where(i => i.Value["custName"].ToString() == y.ToString()).Count().ToString(); //Lambda
+                    .Where(i => i.Value["customerName"].ToString() == y.ToString()).Count().ToString(); //Lambda
 
                 custDataTable.Rows.Add(row);
             }

@@ -78,6 +78,7 @@ namespace C969PA
             this.DelCustSearchButton.TabIndex = 3;
             this.DelCustSearchButton.Text = "Search";
             this.DelCustSearchButton.UseVisualStyleBackColor = true;
+            this.DelCustSearchButton.Click += new System.EventHandler(this.DelCustSearchButton_Click);
             // 
             // DelCustActiveLabel
             // 
@@ -150,6 +151,7 @@ namespace C969PA
             this.DelCustDelButton.TabIndex = 11;
             this.DelCustDelButton.Text = "Delete";
             this.DelCustDelButton.UseVisualStyleBackColor = true;
+            this.DelCustDelButton.Click += new System.EventHandler(this.DelCustDelButton_Click);
             // 
             // DelCustCancelButton
             // 
@@ -159,6 +161,7 @@ namespace C969PA
             this.DelCustCancelButton.TabIndex = 12;
             this.DelCustCancelButton.Text = "Cancel";
             this.DelCustCancelButton.UseVisualStyleBackColor = true;
+            this.DelCustCancelButton.Click += new System.EventHandler(this.DelCustCancelButton_Click);
             // 
             // DelCustPage
             // 

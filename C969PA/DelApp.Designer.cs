@@ -117,6 +117,7 @@ namespace C969PA
             this.DelAppSearchButton.TabIndex = 7;
             this.DelAppSearchButton.Text = "Search";
             this.DelAppSearchButton.UseVisualStyleBackColor = true;
+            this.DelAppSearchButton.Click += new System.EventHandler(this.DelAppSearchButton_Click);
             // 
             // DelAppDeleteButton
             // 
@@ -126,6 +127,7 @@ namespace C969PA
             this.DelAppDeleteButton.TabIndex = 8;
             this.DelAppDeleteButton.Text = "Delete";
             this.DelAppDeleteButton.UseVisualStyleBackColor = true;
+            this.DelAppDeleteButton.Click += new System.EventHandler(this.DelAppDeleteButton_Click);
             // 
             // DelAppCancelButton
             // 
@@ -135,6 +137,7 @@ namespace C969PA
             this.DelAppCancelButton.TabIndex = 9;
             this.DelAppCancelButton.Text = "Cancel";
             this.DelAppCancelButton.UseVisualStyleBackColor = true;
+            this.DelAppCancelButton.Click += new System.EventHandler(this.DelAppCancelButton_Click);
             // 
             // DelAppPage
             // 

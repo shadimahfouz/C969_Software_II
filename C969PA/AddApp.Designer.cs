@@ -40,10 +40,13 @@ namespace C969PA
             this.label5 = new System.Windows.Forms.Label();
             this.CancelAddApp = new System.Windows.Forms.Button();
             this.AddApp = new System.Windows.Forms.Button();
+            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.SuspendLayout();
             // 
             // AddAppStartBox
             // 
+            this.AddAppStartBox.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            this.AddAppStartBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.AddAppStartBox.Location = new System.Drawing.Point(131, 206);
             this.AddAppStartBox.Name = "AddAppStartBox";
             this.AddAppStartBox.Size = new System.Drawing.Size(200, 23);
@@ -52,6 +55,8 @@ namespace C969PA
             // 
             // AddAppEndBox
             // 
+            this.AddAppEndBox.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            this.AddAppEndBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.AddAppEndBox.Location = new System.Drawing.Point(131, 262);
             this.AddAppEndBox.Name = "AddAppEndBox";
             this.AddAppEndBox.Size = new System.Drawing.Size(200, 23);
@@ -140,11 +145,18 @@ namespace C969PA
             this.AddApp.UseVisualStyleBackColor = true;
             this.AddApp.Click += new System.EventHandler(this.AddApp_Click_1);
             // 
+            // mySqlCommand1
+            // 
+            this.mySqlCommand1.CacheAge = 0;
+            this.mySqlCommand1.Connection = null;
+            this.mySqlCommand1.EnableCaching = false;
+            this.mySqlCommand1.Transaction = null;
+            // 
             // AddAppPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 438);
+            this.ClientSize = new System.Drawing.Size(390, 438);
             this.Controls.Add(this.AddApp);
             this.Controls.Add(this.CancelAddApp);
             this.Controls.Add(this.label5);
@@ -178,5 +190,6 @@ namespace C969PA
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button CancelAddApp;
         private System.Windows.Forms.Button AddApp;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
     }
 }

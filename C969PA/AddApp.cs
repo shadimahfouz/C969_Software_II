@@ -17,7 +17,7 @@ namespace C969PA
             AddAppEndBox.Value = AddAppEndBox.Value.AddHours(1);
         }
 
-        public DashboardPage dashboardCalendar;
+        public DashboardPage dashPageAddAppButton;
 
         public static bool TimeConflict(DateTime starTime, DateTime endTime)
         {
@@ -77,7 +77,7 @@ namespace C969PA
                             AppDatabase.NewLog(timestamp, username, "appointment",
                                 $"'{AddAppIDBox.Text}', '{AddAppStartBox.Value.ToUniversalTime().ToString("u")}', '{AddAppEndBox.Value.ToUniversalTime().ToString("u")}', '{AppTypeBox.Text}'",
                                 userid);
-                            dashboardCalendar.UpdateCalendar();
+                            dashPageAddAppButton.DashCalUpdate();
                             Close();
                         }
                     }

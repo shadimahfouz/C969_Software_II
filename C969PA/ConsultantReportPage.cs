@@ -27,7 +27,7 @@ namespace C969PA
                 {
                     userName = row.Value["userName"], appType = row.Value["type"],
                     appStart = AppDatabase.TimezoneConversion(row.Value["start"].ToString()),
-                    appEnd = AppDatabase.TimezoneConversion(row.Value["end"].ToString()), cust = row.Value["custName"]
+                    appEnd = AppDatabase.TimezoneConversion(row.Value["end"].ToString()), cust = row.Value["customerName"]
                 };
 
             return appList.ToArray();

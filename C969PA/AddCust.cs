@@ -37,10 +37,10 @@ namespace C969PA
             {
                 int countryId = AppDatabase.NewLog(timestamp, userName, "country", $"'{AddCustCountryBox.Text}'");
                 int cityId = AppDatabase.NewLog(timestamp, userName, "city", $"'{AddCustCityBox.Text}', '{countryId}'");
-                int strAddressId = AppDatabase.NewLog(timestamp, userName, "address",
+                int addressId = AppDatabase.NewLog(timestamp, userName, "address",
                     $"'{AddCustStreetBox.Text}', '', '{cityId}', '{AddCustZipBox.Text}', '{AddCustPhoneBox.Text}'");
                 AppDatabase.NewLog(timestamp, userName, "customer",
-                    $"'{AddCustNameBox.Text}', '{strAddressId}', '{(ActiveYesRadio.Checked ? 1 : 0)}'");
+                    $"'{AddCustNameBox.Text}', '{addressId}', '{(ActiveYesRadio.Checked ? 1 : 0)}'");
 
                 Close();
             }

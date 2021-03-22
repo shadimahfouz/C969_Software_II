@@ -81,6 +81,7 @@ namespace C969PA
             this.PassText.Location = new System.Drawing.Point(112, 178);
             this.PassText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PassText.Name = "PassText";
+            this.PassText.PasswordChar = '*';
             this.PassText.Size = new System.Drawing.Size(110, 23);
             this.PassText.TabIndex = 4;
             // 
@@ -93,6 +94,7 @@ namespace C969PA
             this.LoginButton.TabIndex = 5;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = true;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // LoginCancelButton
             // 
@@ -102,6 +104,7 @@ namespace C969PA
             this.LoginCancelButton.TabIndex = 6;
             this.LoginCancelButton.Text = "Cancel";
             this.LoginCancelButton.UseVisualStyleBackColor = true;
+            this.LoginCancelButton.Click += new System.EventHandler(this.LoginCancelButton_Click);
             // 
             // LoginPage
             // 
