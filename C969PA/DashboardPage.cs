@@ -44,7 +44,7 @@ namespace C969PA
             s.Open();
 
             string query =
-                $"SELECT customerId, type, start, end, appointmentId, userId FROM appointment WHERE userId = '{AppDatabase.GetUserId()}'";
+                $"SELECT customerId, type, start, end, appointmentId, userId FROM appointment WHERE userid = '{AppDatabase.GetUserId()}'";
             MySqlCommand command = new MySqlCommand(query, s);
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -119,9 +119,9 @@ namespace C969PA
             var appList = from row in addedApps
                 select new
                 {
-                    appId = row.Key, appType = row.Value["type"],
-                    appStart = AppDatabase.TimezoneConversion(row.Value["start"].ToString()),
-                    appEnd = AppDatabase.TimezoneConversion(row.Value["end"].ToString()), cust = row.Value["customerName"]
+                    ID = row.Key, Type = row.Value["type"],
+                    Start = AppDatabase.TimezoneConversion(row.Value["start"].ToString()),
+                    End = AppDatabase.TimezoneConversion(row.Value["end"].ToString()), Customer = row.Value["customerName"]
                 };
 
             s.Close();

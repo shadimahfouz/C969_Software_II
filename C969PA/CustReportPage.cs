@@ -33,10 +33,10 @@ namespace C969PA
             foreach (string x in y)
             {
                 DataRow row = custDataTable.NewRow();
-                row["Customer Name"] = y;
+                row["Customer Name"] = x;
 
                 row["Number of Appointments"] = numAppointments
-                    .Where(i => i.Value["customerName"].ToString() == y.ToString()).Count().ToString(); //Lambda
+                    .Where(i => i.Value["customerName"].ToString() == x.ToString()).Count().ToString(); //Lambda
 
                 custDataTable.Rows.Add(row);
             }
@@ -46,7 +46,7 @@ namespace C969PA
     }
     public struct CustomerReportStructure
     {
-        public string custName;
+        public string customerName;
         public int numApps;
     }
 }

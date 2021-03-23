@@ -60,7 +60,7 @@ namespace C969PA
 
         public static string LogTimeStamp()
         {
-            return DateTime.Now.ToString("u");
+            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         public static int MakeId(string idtable)
@@ -82,6 +82,7 @@ namespace C969PA
         public static int NewLog(string timestamp, string userName, string table, string poq, int userId = 0)
         {
             int logId = MakeId(table);
+            string defaultName = "not needed";
             string logInsert;
             if (userId == 0)
             {
@@ -91,8 +92,8 @@ namespace C969PA
             else
             {
                 logInsert =
-                    $"INSERT INTO {table} (appointmentId, customerId, start, end, type, userId, createDate, createdBy, lastUpdate, lastUpdateBy)" +
-                    $" VALUES ('{logId}', {poq}, '{userId}', '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
+                    $"INSERT INTO {table} (appointmentId, customerId, start, end, type, userId, createDate, createdBy, lastUpdate, lastUpdateBy, title, description, location, contact, url)" +
+                    $" VALUES ('{logId}', {poq}, '{userId}', '{timestamp}', '{userName}', '{timestamp}', '{userName}', '{defaultName}', '{defaultName}', '{defaultName}', '{defaultName}', '{defaultName}')";
             }
 
             MySqlConnection s = new MySqlConnection(dbConnection);
@@ -201,9 +202,9 @@ namespace C969PA
             return appointmentDict;
         }
 
-        public static string TimezoneConversion(string localTimezone)
+        public static string TimezoneConversion(string dateTime)
         {
-            DateTime utcDateTime = DateTime.Parse(localTimezone.ToString());
+            DateTime utcDateTime = DateTime.Parse(dateTime);
             DateTime localDateTime = utcDateTime.ToLocalTime();
 
             return localDateTime.ToString("MM/dd/yyyy hh:mm tt");

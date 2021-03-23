@@ -89,6 +89,7 @@ namespace C969PA
             if (delCustConfirm == DialogResult.Yes)
             {
                 DelCust();
+                MessageBox.Show("Customer has been successfully deleted.", "Success");
             }
             else
             {

@@ -75,7 +75,7 @@ namespace C969PA
                         else
                         {
                             AppDatabase.NewLog(timestamp, username, "appointment",
-                                $"'{AddAppIDBox.Text}', '{AddAppStartBox.Value.ToUniversalTime().ToString("u")}', '{AddAppEndBox.Value.ToUniversalTime().ToString("u")}', '{AppTypeBox.Text}'",
+                                $"'{AddAppIDBox.Text}', '{AddAppStartBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss")}', '{AddAppEndBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss")}', '{AppTypeBox.Text}'",
                                 userid);
                             dashPageAddAppButton.DashCalUpdate();
                             Close();

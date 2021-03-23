@@ -9,7 +9,7 @@ namespace C969PA
     {
         public void BusinessHours()
         {
-            MessageBox.Show("Appointments cannot be placed outside of normal business house", "Error");
+            MessageBox.Show("Appointments cannot be placed outside of normal business hours", "Error");
         }
 
         public void AppTimeConflict()

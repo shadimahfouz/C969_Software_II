@@ -26,8 +26,8 @@ namespace C969PA
             s.Open();
 
             string logUpdate = $"UPDATE appointment" +
-                               $"SET customerId = '{modForm["customerId"]}', start = '{modForm["start"]}', end = '{modForm["end"]}', type = '{modForm["type"]}', lastUpdate = '{AppDatabase.LogTimeStamp()}', lastUpdateBy = '{AppDatabase.LogTimeStamp()}'" +
-                               $"WHERE appointmentId = '{modApp["appointmentId"]}'";
+                               $" SET customerId = '{modForm["customerId"]}', type = '{modForm["type"]}', start = '{modForm["start"]}', end = '{modForm["end"]}', lastUpdate = '{AppDatabase.LogTimeStamp()}', lastUpdateBy = '{AppDatabase.LogTimeStamp()}'" +
+                               $" WHERE appointmentId = '{modApp["appointmentId"]}'";
             MySqlCommand command = new MySqlCommand(logUpdate, s);
             int moddedApp = command.ExecuteNonQuery();
 
@@ -56,8 +56,8 @@ namespace C969PA
             Dictionary<string, string> saveMods = new Dictionary<string, string>();
             saveMods.Add("customerId", ModAppIDBox.Text);
             saveMods.Add("type", ModAppTypeBox.Text);
-            saveMods.Add("start", ModAppStartBox.Value.ToUniversalTime().ToString("u"));
-            saveMods.Add("end", ModAppEndBox.Value.ToUniversalTime().ToString("u"));
+            saveMods.Add("start", ModAppStartBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"));
+            saveMods.Add("end", ModAppEndBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"));
 
             if (ModifiedApp(saveMods))
             {
