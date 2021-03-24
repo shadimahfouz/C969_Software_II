@@ -12,6 +12,7 @@ namespace C969PA
 {
     public partial class CustReportPage : Form
     {
+        //This page creates a report that shows customers with appointments and displays the number of appointments that each customer has.
         public CustReportPage()
         {
             InitializeComponent();
@@ -28,7 +29,9 @@ namespace C969PA
             custDataTable.Columns.Add("Customer Name");
             custDataTable.Columns.Add("Number of Appointments");
 
-            IEnumerable<string> y = numAppointments.Select(i => i.Value["customerName"].ToString()).Distinct(); //Lambda
+            IEnumerable<string>
+                y = numAppointments.Select(i => i.Value["customerName"].ToString())
+                    .Distinct(); //Lambda function that will enumerate through and pick up distinct customers from the appointment table, much less code required and more efficient than a standard function to perform the same operation.
 
             foreach (string x in y)
             {
@@ -36,17 +39,13 @@ namespace C969PA
                 row["Customer Name"] = x;
 
                 row["Number of Appointments"] = numAppointments
-                    .Where(i => i.Value["customerName"].ToString() == x.ToString()).Count().ToString(); //Lambda
+                    .Where(i => i.Value["customerName"].ToString() == x.ToString()).Count()
+                    .ToString(); //Lambda function that will count the number of appointments each distinct customer has and display the count next to the customer's name, much less code required than a traditional function to perform this action.
 
                 custDataTable.Rows.Add(row);
             }
 
             return custDataTable;
         }
-    }
-    public struct CustomerReportStructure
-    {
-        public string customerName;
-        public int numApps;
     }
 }

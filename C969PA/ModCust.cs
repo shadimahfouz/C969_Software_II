@@ -9,6 +9,8 @@ using MySql.Data.MySqlClient;
 
 namespace C969PA
 {
+
+    //This page allows the user to modify customer information.
     public partial class ModCustPage : Form
     {
         public ModCustPage()
@@ -18,7 +20,7 @@ namespace C969PA
 
         public static Dictionary<string, string> modCustomer = new Dictionary<string, string>();
 
-        public bool ModifiedCustomer(Dictionary<string, string> modForm)
+        public bool ModifiedCustomer(Dictionary<string, string> modForm) //Updates all tables containing customer information.
         {
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
             s.Open();
@@ -65,7 +67,7 @@ namespace C969PA
 
         }
 
-        private void ModCustSearchButton_Click(object sender, EventArgs e)
+        private void ModCustSearchButton_Click(object sender, EventArgs e) //Allows user to search customer by ID and returns all customer data.
         {
             int custId = AppDatabase.LookupCustomer(ModCustIDBox.Text);
 

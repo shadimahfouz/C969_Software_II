@@ -8,6 +8,8 @@ using System.Windows.Forms;
 
 namespace C969PA
 {
+
+    //This page adds functionality to add a customer.
     public partial class AddCustPage : Form
     {
         public AddCustPage()
@@ -22,7 +24,7 @@ namespace C969PA
 
         }
 
-        private void AddCustSave_Click(object sender, EventArgs e)
+        private void AddCustSave_Click(object sender, EventArgs e) //Add Customer save button
         {
             string timestamp = AppDatabase.LogTimeStamp();
             string userName = AppDatabase.GetUserName();
@@ -31,7 +33,7 @@ namespace C969PA
                 string.IsNullOrEmpty(AddCustZipBox.Text) || string.IsNullOrEmpty(AddCustCountryBox.Text) ||
                 (ActiveYesRadio.Checked == false && ActiveNoRadio.Checked == false))
             {
-                MessageBox.Show("Fields cannot be left blank.", "Error");
+                MessageBox.Show("Fields cannot be left blank.", "Error"); //Makes sure no fields are left blank
             }
             else
             {
@@ -41,6 +43,8 @@ namespace C969PA
                     $"'{AddCustStreetBox.Text}', '', '{cityId}', '{AddCustZipBox.Text}', '{AddCustPhoneBox.Text}'");
                 AppDatabase.NewLog(timestamp, userName, "customer",
                     $"'{AddCustNameBox.Text}', '{addressId}', '{(ActiveYesRadio.Checked ? 1 : 0)}'");
+
+                MessageBox.Show("Customer has been successfully added.", "Success");
 
                 Close();
             }

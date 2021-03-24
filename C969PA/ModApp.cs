@@ -10,6 +10,8 @@ using Org.BouncyCastle.Cms;
 
 namespace C969PA
 {
+
+    //This page allows user to modify appointments based on appointment ID.
     public partial class ModAppPage : Form
     {
         public ModAppPage()
@@ -17,7 +19,7 @@ namespace C969PA
             InitializeComponent();
         }
 
-        public DashboardPage modappButton;
+        public DashboardPage modappButton; //Connects this page to Modify Appointment button on dashboard page.
         public static Dictionary<string, string> modApp = new Dictionary<string, string>();
 
         public static bool ModifiedApp(Dictionary<string, string> modForm)
@@ -41,14 +43,12 @@ namespace C969PA
             }
         }
 
-        private void ModAppSearchButton_Click(object sender, EventArgs e)
+        private void ModAppSearchButton_Click(object sender, EventArgs e) //Allows user to look up appointment by ID, linked customer ID and appointment type are then pre-filled.
         {
             string appId = ModAppSearchBox.Text;
             modApp = AppDatabase.GetAppInfo(appId);
             ModAppIDBox.Text = modApp["customerId"];
             ModAppTypeBox.Text = modApp["type"];
-            ModAppStartBox.Value = DateTime.Parse(AppDatabase.TimezoneConversion(modApp["start"]));
-            ModAppEndBox.Value = DateTime.Parse(AppDatabase.TimezoneConversion(modApp["end"]));
         }
 
         private void ModAppSaveButton_Click(object sender, EventArgs e)
@@ -62,6 +62,7 @@ namespace C969PA
             if (ModifiedApp(saveMods))
             {
                 modappButton.DashCalUpdate();
+                MessageBox.Show("Appointment successfully modified.", "Success");
                 Close();
             }
             else

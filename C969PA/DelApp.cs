@@ -9,6 +9,8 @@ using MySql.Data.MySqlClient;
 
 namespace C969PA
 {
+
+    //Page where you can delete appointments
     public partial class DelAppPage : Form
     {
         public DelAppPage()
@@ -16,10 +18,10 @@ namespace C969PA
             InitializeComponent();
         }
 
-        public DashboardPage dashDelButton;
+        public DashboardPage dashDelButton; //Connects the page to the Delete Appointment button on dashboard page.
         public static Dictionary<string, string> appInfo = new Dictionary<string, string>();
 
-        public static bool DelApp()
+        public static bool DelApp() //Searches for and deletes appointment
         {
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
             s.Open();
@@ -51,8 +53,6 @@ namespace C969PA
             appInfo = AppDatabase.GetAppInfo(appId);
             DelAppTypeLabel.Text = appInfo["type"];
             DelAppCIDLabel.Text = appInfo["customerId"];
-            DelAppStartLabel.Text = appInfo["start"];
-            DelAppEndLabel.Text = appInfo["end"];
         }
 
         private void DelAppDeleteButton_Click(object sender, EventArgs e)

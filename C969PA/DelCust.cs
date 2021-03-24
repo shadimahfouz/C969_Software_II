@@ -9,6 +9,8 @@ using MySql.Data.MySqlClient;
 
 namespace C969PA
 {
+
+    //Page to delete customers
     public partial class DelCustPage : Form
     {
         public DelCustPage()
@@ -18,7 +20,7 @@ namespace C969PA
 
         public static Dictionary<string, string> custInfo = new Dictionary<string, string>();
 
-        public bool DelCust()
+        public bool DelCust() //Searches for and deletes customer based on Customer ID
         {
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
             s.Open();
@@ -52,7 +54,7 @@ namespace C969PA
             }
         }
 
-        private void DelCustSearchButton_Click(object sender, EventArgs e)
+        private void DelCustSearchButton_Click(object sender, EventArgs e) //Search button functionality, finds customer based on ID.
         {
             int custId = AppDatabase.LookupCustomer(DelCustSearchBox.Text);
 
@@ -83,8 +85,8 @@ namespace C969PA
 
         private void DelCustDelButton_Click(object sender, EventArgs e)
         {
-            DialogResult delCustConfirm = MessageBox.Show("Are you sure you want to delete this customer?",
-                "Confirmation", MessageBoxButtons.YesNo);
+            DialogResult delCustConfirm = MessageBox.Show("All customer appointments belonging to this customer must be deleted before you can delete this customer, have all appointments been deleted?",
+                "Warning", MessageBoxButtons.YesNo);
 
             if (delCustConfirm == DialogResult.Yes)
             {

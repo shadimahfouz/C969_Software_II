@@ -7,6 +7,8 @@ namespace C969PA
 {
     class AppException : ApplicationException
     {
+        //Error messages to handle both exceptions
+
         public void BusinessHours()
         {
             MessageBox.Show("Appointments cannot be placed outside of normal business hours", "Error");

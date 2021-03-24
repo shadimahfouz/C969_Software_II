@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace C969PA
 {
+
+    //Consultant report page that lists the appointments tied to each consultant.
     public partial class ConsultantReportPage : Form
     {
         public ConsultantReportPage()
@@ -31,16 +33,6 @@ namespace C969PA
                 };
 
             return appList.ToArray();
-        }
-
-        public struct ConsultantReportStructure
-        {
-            public int userId;
-            public string userName;
-            public string appType;
-            public string appStart;
-            public string appEnd;
-            public string custName;
         }
 
         private void ConScheduleGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)

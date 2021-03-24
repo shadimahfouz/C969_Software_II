@@ -83,7 +83,7 @@ namespace C969PA
             // DelCustActiveLabel
             // 
             this.DelCustActiveLabel.AutoSize = true;
-            this.DelCustActiveLabel.Location = new System.Drawing.Point(66, 284);
+            this.DelCustActiveLabel.Location = new System.Drawing.Point(47, 282);
             this.DelCustActiveLabel.Name = "DelCustActiveLabel";
             this.DelCustActiveLabel.Size = new System.Drawing.Size(43, 15);
             this.DelCustActiveLabel.TabIndex = 4;
@@ -92,7 +92,7 @@ namespace C969PA
             // DelCustZipCode
             // 
             this.DelCustZipCode.AutoSize = true;
-            this.DelCustZipCode.Location = new System.Drawing.Point(51, 234);
+            this.DelCustZipCode.Location = new System.Drawing.Point(47, 234);
             this.DelCustZipCode.Name = "DelCustZipCode";
             this.DelCustZipCode.Size = new System.Drawing.Size(58, 15);
             this.DelCustZipCode.TabIndex = 5;
@@ -101,7 +101,7 @@ namespace C969PA
             // DelCustAddressLabel
             // 
             this.DelCustAddressLabel.AutoSize = true;
-            this.DelCustAddressLabel.Location = new System.Drawing.Point(24, 184);
+            this.DelCustAddressLabel.Location = new System.Drawing.Point(47, 184);
             this.DelCustAddressLabel.Name = "DelCustAddressLabel";
             this.DelCustAddressLabel.Size = new System.Drawing.Size(85, 15);
             this.DelCustAddressLabel.TabIndex = 6;
@@ -110,7 +110,7 @@ namespace C969PA
             // DelCustNameLabel
             // 
             this.DelCustNameLabel.AutoSize = true;
-            this.DelCustNameLabel.Location = new System.Drawing.Point(12, 131);
+            this.DelCustNameLabel.Location = new System.Drawing.Point(47, 131);
             this.DelCustNameLabel.Name = "DelCustNameLabel";
             this.DelCustNameLabel.Size = new System.Drawing.Size(97, 15);
             this.DelCustNameLabel.TabIndex = 7;
@@ -128,7 +128,7 @@ namespace C969PA
             // DelCustCityLabel
             // 
             this.DelCustCityLabel.AutoSize = true;
-            this.DelCustCityLabel.Location = new System.Drawing.Point(315, 184);
+            this.DelCustCityLabel.Location = new System.Drawing.Point(255, 184);
             this.DelCustCityLabel.Name = "DelCustCityLabel";
             this.DelCustCityLabel.Size = new System.Drawing.Size(31, 15);
             this.DelCustCityLabel.TabIndex = 9;
@@ -137,7 +137,7 @@ namespace C969PA
             // DelCustCountryLabel
             // 
             this.DelCustCountryLabel.AutoSize = true;
-            this.DelCustCountryLabel.Location = new System.Drawing.Point(293, 234);
+            this.DelCustCountryLabel.Location = new System.Drawing.Point(255, 234);
             this.DelCustCountryLabel.Name = "DelCustCountryLabel";
             this.DelCustCountryLabel.Size = new System.Drawing.Size(53, 15);
             this.DelCustCountryLabel.TabIndex = 10;

@@ -19,8 +19,12 @@ namespace C969PA
         public LoginPage()
         {
             InitializeComponent();
+            CheckRegion(CultureInfo.CurrentUICulture.LCID); //Utilizes the CheckRegion method to determine the region LCID the user is logging in from.
+        }
 
-            if (CultureInfo.CurrentUICulture.LCID == 2058)
+        private void CheckRegion(int LCID) //Translates login page and error message text to Spanish if the user LCID matches 2058, that of Mexico.
+        {
+            if (LCID == 2058)
             {
                 label3.Text = "Bienvenido!";
                 UserLabel.Text = "Nombre De Usario:";
@@ -31,7 +35,7 @@ namespace C969PA
             }
         }
 
-        public static int VerifyLogin(string username, string password)
+        public static int VerifyLogin(string username, string password) //Verifies that the user login information matches that in the database.
         {
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
             s.Open();
@@ -71,7 +75,7 @@ namespace C969PA
 
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
+        private void LoginButton_Click(object sender, EventArgs e) //Creates new log entry every time a user logs into the application and brings up the dashboard page upon successful login. 
         {
             if (VerifyLogin(UserText.Text, PassText.Text) != 0)
             {

@@ -14,7 +14,6 @@ C:\WGU\C969 Software II\C969PA\bin\Debug\netcoreapp3.1\Ubiety.Dns.Core.dll
 C:\WGU\C969 Software II\C969PA\bin\Debug\netcoreapp3.1\Zstandard.Net.dll
 C:\WGU\C969 Software II\C969PA\bin\Debug\netcoreapp3.1\Renci.SshNet.dll
 C:\WGU\C969 Software II\C969PA\bin\Debug\netcoreapp3.1\SshNet.Security.Cryptography.dll
-C:\WGU\C969 Software II\C969PA\obj\Debug\netcoreapp3.1\C969PA.csprojAssemblyReference.cache
 C:\WGU\C969 Software II\C969PA\obj\Debug\netcoreapp3.1\C969PA.AddAppPage.resources
 C:\WGU\C969 Software II\C969PA\obj\Debug\netcoreapp3.1\C969PA.AddCustPage.resources
 C:\WGU\C969 Software II\C969PA\obj\Debug\netcoreapp3.1\C969PA.AppReportPage.resources

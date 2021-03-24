@@ -9,9 +9,7 @@ namespace C969PA
     {
         public static void TrackUserLogin(int userId)
         {
-            //string filePath = "log.text";
-            //string logText = $"User {userId} logged in at {AppDatabase.LogTimeStamp()}" + Environment.NewLine;
-            //File.AppendAllText(filePath, logText);
+            //This will create a log file in bin\debug\netcoreapp3.1\log.txt if it does not exist, then populate it with login dates, times, and name of user who logged in. 
 
             string path = @"log.txt";
             if (!File.Exists(path))

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace C969PA
 {
-
+    //Appointment report page that displays all appointments in database
     public struct AppReport
     {
         public string appMonth;
@@ -62,6 +62,8 @@ namespace C969PA
                     appReport.appMonth = appMonths[month].ToString();
                     appReport.appType = appointment["type"].ToString();
 
+                    //Lambda function to count distict types of appointments within the month and list how many of each type in the number column. 
+
                     appReport.numApps = AppDatabase.GetAppointments().Where(i =>
                         i.Value["type"].ToString() == appointment["type"].ToString() &&
                         DateTime.Parse(i.Value["start"].ToString()).Month == month).Count();
@@ -73,9 +75,9 @@ namespace C969PA
             var appArray = from row in appList
                 select new
                 {
-                    month = row.appMonth,
-                    type = row.appType,
-                    number = row.numApps
+                    Month = row.appMonth,
+                    Type = row.appType,
+                    Number = row.numApps
                 };
 
             return appArray.ToArray();

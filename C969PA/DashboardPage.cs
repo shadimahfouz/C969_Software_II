@@ -11,6 +11,8 @@ using MySql.Data.MySqlClient;
 
 namespace C969PA
 {
+
+    //Main page for the application
     public partial class DashboardPage : Form
     {
 
@@ -18,11 +20,12 @@ namespace C969PA
         public DashboardPage()
         {
             InitializeComponent();
-            DashboardAppGrid.DataSource = DashAppCalendar(DashboardWeekRadio.Checked);
+            DashboardMonthRadio.Checked = true;
+            DashboardAppGrid.DataSource = DashAppCalendar(DashboardWeekRadio.Checked); //By default, the month view is shown on the dashboard page calendar. View changes once week button is clicked.
             AppReminder(DashboardAppGrid);
         }
 
-        public static void AppReminder(DataGridView dashCalendar)
+        public static void AppReminder(DataGridView dashCalendar) //Method to remind user of upcoming appointments upon next login.
         {
             foreach (DataGridViewRow row in dashCalendar.Rows)
             {
@@ -38,7 +41,7 @@ namespace C969PA
             }
         }
 
-        public static Array DashAppCalendar(bool week)
+        public static Array DashAppCalendar(bool week) //Populates the dashboard calendar with upcoming appointments and appointment details.
         {
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
             s.Open();
@@ -141,19 +144,19 @@ namespace C969PA
             DashboardAppGrid.DataSource = DashAppCalendar(DashboardWeekRadio.Checked);
         }
 
-        private void DashboardAddCustButton_Click(object sender, EventArgs e)
+        private void DashboardAddCustButton_Click(object sender, EventArgs e) //Brings up the Add Customer page
         {
             AddCustPage addCust = new AddCustPage();
             addCust.Show();
         }
 
-        private void DashboardModCustButton_Click(object sender, EventArgs e)
+        private void DashboardModCustButton_Click(object sender, EventArgs e) //Brings up the Modify Customer page
         {
             ModCustPage modCust = new ModCustPage();
             modCust.Show();
         }
 
-        private void DashboardDelCustButton_Click(object sender, EventArgs e)
+        private void DashboardDelCustButton_Click(object sender, EventArgs e) //Brings up the Delete Customer page
         {
             DelCustPage deleteCust = new DelCustPage();
             deleteCust.Show();
@@ -169,40 +172,40 @@ namespace C969PA
             DashCalUpdate();
         }
 
-        private void DashboardAddAppButton_Click(object sender, EventArgs e)
+        private void DashboardAddAppButton_Click(object sender, EventArgs e) //Brings up Add Appointment page
         {
             AddAppPage addApp = new AddAppPage();
             addApp.dashPageAddAppButton = this;
             addApp.Show();
         }
 
-        private void DashboardModAppButton_Click(object sender, EventArgs e)
+        private void DashboardModAppButton_Click(object sender, EventArgs e) //Brings up Modify Appointment page
         {
             ModAppPage modApp = new ModAppPage();
             modApp.modappButton = this;
             modApp.Show();
         }
 
-        private void DashboardDelAppButton_Click(object sender, EventArgs e)
+        private void DashboardDelAppButton_Click(object sender, EventArgs e) //Brings up Delete Appointment page
         {
             DelAppPage deleteApp = new DelAppPage();
             deleteApp.dashDelButton = this;
             deleteApp.Show();
         }
 
-        private void DashboardAppReportButton_Click(object sender, EventArgs e)
+        private void DashboardAppReportButton_Click(object sender, EventArgs e) //Brings up Appointment Report page
         {
             AppReportPage appReport = new AppReportPage();
             appReport.Show();
         }
 
-        private void DashboardConReportButton_Click(object sender, EventArgs e)
+        private void DashboardConReportButton_Click(object sender, EventArgs e) //Brings up Consultant Report page
         {
             ConsultantReportPage conReports = new ConsultantReportPage();
             conReports.Show();
         }
 
-        private void DashboardCustReportButton_Click(object sender, EventArgs e)
+        private void DashboardCustReportButton_Click(object sender, EventArgs e) //Brings up Customer Report page
         {
             CustReportPage custReports = new CustReportPage();
             custReports.Show();

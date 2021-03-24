@@ -63,7 +63,7 @@ namespace C969PA
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
-        public static int MakeId(string idtable)
+        public static int MakeId(string idtable) //This will create a new, unique ID for new entries.
         {
             MySqlConnection s = new MySqlConnection(dbConnection);
             s.Open();
@@ -79,7 +79,7 @@ namespace C969PA
             return NewUserId(idList);
         }
 
-        public static int NewLog(string timestamp, string userName, string table, string poq, int userId = 0)
+        public static int NewLog(string timestamp, string userName, string table, string poq, int userId = 0) //This gather the information needed when making a new entry into the datatables
         {
             int logId = MakeId(table);
             string defaultName = "not needed";
@@ -92,8 +92,14 @@ namespace C969PA
             else
             {
                 logInsert =
-                    $"INSERT INTO {table} (appointmentId, customerId, start, end, type, userId, createDate, createdBy, lastUpdate, lastUpdateBy, title, description, location, contact, url)" +
-                    $" VALUES ('{logId}', {poq}, '{userId}', '{timestamp}', '{userName}', '{timestamp}', '{userName}', '{defaultName}', '{defaultName}', '{defaultName}', '{defaultName}', '{defaultName}')";
+
+                    //I had to use this code before in order to properly save entries since the "not needed" columns weren't nulled. I have dropped the "not needed" columns from the database in order to clean up my code and prevent issues.
+
+                    //$"INSERT INTO {table} (appointmentId, customerId, start, end, type, userId, createDate, createdBy, lastUpdate, lastUpdateBy, title, description, location, contact, url)" +
+                    //$" VALUES ('{logId}', {poq}, '{userId}', '{timestamp}', '{userName}', '{timestamp}', '{userName}', '{defaultName}', '{defaultName}', '{defaultName}', '{defaultName}', '{defaultName}')";
+
+                $"INSERT INTO {table} (appointmentId, customerId, start, end, type, userId, createDate, createdBy, lastUpdate, lastUpdateBy)" +
+                    $" VALUES ('{logId}', {poq}, '{userId}', '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
             }
 
             MySqlConnection s = new MySqlConnection(dbConnection);
@@ -105,7 +111,7 @@ namespace C969PA
             return logId;
         }
 
-        public static int LookupCustomer(string enterCust)
+        public static int LookupCustomer(string enterCust) //This allows users to look up customers in search bars using the customerId.
         {
             int custId;
             string query;
@@ -135,7 +141,7 @@ namespace C969PA
             return 0;
         }
 
-        public static Dictionary<string, string> GetCustInfo(int custId)
+        public static Dictionary<string, string> GetCustInfo(int custId) //This retrieves customer information when called.
         {
             string query = $"SELECT * FROM customer WHERE customerId = '{custId.ToString()}'";
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
@@ -143,6 +149,8 @@ namespace C969PA
             MySqlCommand command = new MySqlCommand(query, s);
             MySqlDataReader reader = command.ExecuteReader();
             reader.Read();
+
+            //Basic customer information
 
             Dictionary<string, string> customerDict = new Dictionary<string, string>();
             customerDict.Add("customerName", reader[1].ToString());
@@ -155,6 +163,8 @@ namespace C969PA
             reader = command.ExecuteReader();
             reader.Read();
 
+            //Customer address information
+
             customerDict.Add("address", reader[1].ToString());
             customerDict.Add("cityId", reader[3].ToString());
             customerDict.Add("postalCode", reader[4].ToString());
@@ -166,6 +176,8 @@ namespace C969PA
             reader = command.ExecuteReader();
             reader.Read();
 
+            //Customer city information
+
             customerDict.Add("city", reader[1].ToString());
             customerDict.Add("countryId", reader[2].ToString());
             reader.Close();
@@ -175,6 +187,8 @@ namespace C969PA
             reader = command.ExecuteReader();
             reader.Read();
 
+            //Customer country information
+
             customerDict.Add("country", reader[1].ToString());
             reader.Close();
             s.Close();
@@ -182,7 +196,7 @@ namespace C969PA
             return customerDict;
         }
 
-        public static Dictionary<string, string> GetAppInfo(string appId)
+        public static Dictionary<string, string> GetAppInfo(string appId) //Retrieves appointment information when called.
         {
             string query = $"SELECT * FROM appointment WHERE appointmentId = '{appId}'";
             MySqlConnection s = new MySqlConnection(AppDatabase.dbConnection);
@@ -191,10 +205,12 @@ namespace C969PA
             MySqlDataReader reader = command.ExecuteReader();
             reader.Read();
 
+            //Customer appointment information
+
             Dictionary<string, string> appointmentDict = new Dictionary<string, string>();
             appointmentDict.Add("appointmentId", appId);
             appointmentDict.Add("customerId", reader[1].ToString());
-            appointmentDict.Add("type", reader[13].ToString());
+            appointmentDict.Add("type", reader[3].ToString());
             appointmentDict.Add("start", reader[7].ToString());
             appointmentDict.Add("end", reader[8].ToString());
             reader.Close();
@@ -202,7 +218,7 @@ namespace C969PA
             return appointmentDict;
         }
 
-        public static string TimezoneConversion(string dateTime)
+        public static string TimezoneConversion(string dateTime) //This converts time based on timezone of user.
         {
             DateTime utcDateTime = DateTime.Parse(dateTime);
             DateTime localDateTime = utcDateTime.ToLocalTime();
