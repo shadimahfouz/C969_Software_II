@@ -51,23 +51,81 @@ namespace C969PA
             ModAppTypeBox.Text = modApp["type"];
         }
 
-        private void ModAppSaveButton_Click(object sender, EventArgs e)
+        public static bool TimeConflict(DateTime starTime, DateTime endTime) //Defines the time conflict exception that prevents appointment from being added if time conflicts with another appointment.
         {
-            Dictionary<string, string> saveMods = new Dictionary<string, string>();
-            saveMods.Add("customerId", ModAppIDBox.Text);
-            saveMods.Add("type", ModAppTypeBox.Text);
-            saveMods.Add("start", ModAppStartBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"));
-            saveMods.Add("end", ModAppEndBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"));
-
-            if (ModifiedApp(saveMods))
+            foreach (var app in AppDatabase.GetAppointments().Values)
             {
-                modappButton.DashCalUpdate();
-                MessageBox.Show("Appointment successfully modified.", "Success");
-                Close();
+                if (starTime < DateTime.Parse(app["end"].ToString()) &&
+                    DateTime.Parse(app["start"].ToString()) < endTime)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool BusinessHourConflict(DateTime starTime, DateTime endTime) //Defines business hour exception that prevents appointment from being added if start or end times fall outside of business hours.
+        {
+            starTime = starTime.ToLocalTime();
+            endTime = endTime.ToLocalTime();
+            DateTime openTime = DateTime.Today.AddHours(8);
+            DateTime closeTime = DateTime.Today.AddHours(17);
+
+            if (starTime.TimeOfDay > openTime.TimeOfDay && starTime.TimeOfDay < closeTime.TimeOfDay &&
+                endTime.TimeOfDay > openTime.TimeOfDay && endTime.TimeOfDay < closeTime.TimeOfDay)
+            {
+                return false;
             }
             else
             {
-                MessageBox.Show("Could not update appointment.", "Error");
+                return true;
+            }
+        }
+
+        private void ModAppSaveButton_Click(object sender, EventArgs e)
+        {
+            /*Dictionary<string, string> saveMods = new Dictionary<string, string>();
+            saveMods.Add("customerId", ModAppIDBox.Text);
+            saveMods.Add("type", ModAppTypeBox.Text);
+            saveMods.Add("start", ModAppStartBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"));
+            saveMods.Add("end", ModAppEndBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"));*/
+
+            string timestamp = AppDatabase.LogTimeStamp();
+            int userid = AppDatabase.GetUserId();
+            string username = AppDatabase.GetUserName();
+            DateTime startTime = ModAppStartBox.Value.ToUniversalTime();
+            DateTime endTime = ModAppEndBox.Value.ToUniversalTime();
+
+            if (BusinessHourConflict(startTime, endTime))
+            {
+                //modappButton.DashCalUpdate();
+                //MessageBox.Show("Appointment successfully modified.", "Success");
+                //Close();
+                MessageBox.Show(
+                    "Appointment times fall out of normal business hours, please adjust start and/or end times and try again.",
+                    "Error");
+            }
+            else if (TimeConflict(startTime, endTime))
+            {
+                MessageBox.Show(
+                    "Appointment times conflict with another appointment, please adjust start and/or end times and try again.",
+                    "Error");
+            }
+            else
+            {
+                Dictionary<string, string> saveMods = new Dictionary<string, string>();
+                saveMods.Add("customerId", ModAppIDBox.Text);
+                saveMods.Add("type", ModAppTypeBox.Text);
+                saveMods.Add("start", ModAppStartBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"));
+                saveMods.Add("end", ModAppEndBox.Value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"));
+
+                if (ModifiedApp(saveMods))
+                {
+                    modappButton.DashCalUpdate();
+                    MessageBox.Show("Appointment successfully modified.", "Success");
+                    Close();
+                }
             }
         }
 

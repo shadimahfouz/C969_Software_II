@@ -98,17 +98,29 @@ namespace C969PA
 
         private void ModCustSave_Click(object sender, EventArgs e)
         {
-            Dictionary<string, string> saveMods = new Dictionary<string, string>();
+            if (string.IsNullOrEmpty(ModCustNameBox.Text) || string.IsNullOrEmpty(ModCustPhoneBox.Text) ||
+                string.IsNullOrEmpty(ModCustStreetBox.Text) || string.IsNullOrEmpty(ModCustCityBox.Text) ||
+                string.IsNullOrEmpty(ModCustZipBox.Text) || string.IsNullOrEmpty(ModCustCountryBox.Text) ||
+                (ActiveYesRadio.Checked == false && ActiveNoRadio.Checked == false))
+            {
+                MessageBox.Show("Fields cannot be left blank.", "Error");
+            }
+            else
+            {
+                Dictionary<string, string> saveMods = new Dictionary<string, string>();
 
-            saveMods.Add("customerName", ModCustNameBox.Text);
-            saveMods.Add("phone", ModCustPhoneBox.Text);
-            saveMods.Add("address", ModCustStreetBox.Text);
-            saveMods.Add("city", ModCustCityBox.Text);
-            saveMods.Add("postalCode", ModCustZipBox.Text);
-            saveMods.Add("country", ModCustCountryBox.Text);
-            saveMods.Add("active", ActiveYesRadio.Checked ? "1" : "0");
+                saveMods.Add("customerName", ModCustNameBox.Text);
+                saveMods.Add("phone", ModCustPhoneBox.Text);
+                saveMods.Add("address", ModCustStreetBox.Text);
+                saveMods.Add("city", ModCustCityBox.Text);
+                saveMods.Add("postalCode", ModCustZipBox.Text);
+                saveMods.Add("country", ModCustCountryBox.Text);
+                saveMods.Add("active", ActiveYesRadio.Checked ? "1" : "0");
 
-            ModifiedCustomer(saveMods);
+                ModifiedCustomer(saveMods);
+                MessageBox.Show("Customer information has been successfully modified.", "Success");
+                Close();
+            }
         }
 
         private void ModCustCancel_Click(object sender, EventArgs e)

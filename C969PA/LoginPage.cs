@@ -26,8 +26,9 @@ namespace C969PA
         {
             if (LCID == 2058)
             {
+                this.Text = "Página de inicio de sesión";
                 label3.Text = "Bienvenido!";
-                UserLabel.Text = "Nombre De Usario:";
+                UserLabel.Text = "Usario:";
                 PassLabel.Text = "Contraseña:";
                 LoginButton.Text = "Acceso";
                 LoginCancelButton.Text = "Cancelar";

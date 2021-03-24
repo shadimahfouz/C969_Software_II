@@ -108,7 +108,7 @@ namespace C969PA
                 else
                 {
                     DateTime firstOfMonth = new DateTime(currDateTime.Year, currDateTime.Month, 1);
-                    DateTime lastOfMonth = firstOfMonth.AddMonths(1).AddDays(-1);
+                    DateTime lastOfMonth = firstOfMonth.AddMonths(1);
 
                     if (starTime >= firstOfMonth && endTime < lastOfMonth)
                     {
